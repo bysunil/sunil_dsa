@@ -3,8 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { Search, ChevronRight, Hash, Menu, X, Sun, Moon } from 'lucide-react';
-import { useTheme } from 'next-themes';
+import { Search, ChevronRight, Hash, Menu, X } from 'lucide-react';
 import './Sidebar.css';
 
 export default function Sidebar({ patterns }) {
@@ -12,11 +11,8 @@ export default function Sidebar({ patterns }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [progress, setProgress] = useState({});
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     // Load progress from localStorage on mount
     const savedProgress = localStorage.getItem('dsa-progress');
     if (savedProgress) {
@@ -154,19 +150,6 @@ export default function Sidebar({ patterns }) {
             </div>
           )}
         </nav>
-
-        <div className="sidebar-footer">
-          {mounted && (
-            <button
-              className="theme-toggle"
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              aria-label="Toggle Theme"
-            >
-              {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-              <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
-            </button>
-          )}
-        </div>
       </aside>
     </>
   );

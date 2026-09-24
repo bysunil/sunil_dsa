@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import hljs from 'highlight.js';
-import './syntax.css';
+import 'highlight.js/styles/atom-one-dark.css';
 import CopyButton from './CopyButton';
 import { createRoot } from 'react-dom/client';
 import { ExternalLink, CheckCircle, CircleDashed } from 'lucide-react';
@@ -139,7 +139,9 @@ export default function TemplateViewer({ patternData }) {
         
         h1 {
           margin: 0;
-          color: var(--foreground);
+          background: linear-gradient(to right, #fff, #a1a1aa);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
         
         .status-controls {
@@ -153,7 +155,7 @@ export default function TemplateViewer({ patternData }) {
           padding: 0.5rem 1rem;
           border-radius: 20px;
           border: 1px solid var(--panel-border);
-          background: var(--panel-bg);
+          background: rgba(0, 0, 0, 0.2);
           color: var(--text-muted);
           font-family: inherit;
           font-weight: 500;
@@ -166,8 +168,8 @@ export default function TemplateViewer({ patternData }) {
         .ml-1 { margin-left: 0.25rem; }
         
         .status-btn:hover {
-          background: var(--panel-hover);
-          color: var(--foreground);
+          background: rgba(255, 255, 255, 0.05);
+          color: #fff;
         }
         
         .status-btn.reviewed.active {
@@ -208,22 +210,35 @@ export default function TemplateViewer({ patternData }) {
         .problem-link {
           display: flex;
           align-items: center;
-          background: var(--active-bg);
-          color: var(--accent);
+          background: rgba(139, 92, 246, 0.1);
+          color: #c4b5fd;
           padding: 0.4rem 0.8rem;
           border-radius: 6px;
           font-size: 0.9rem;
-          border: 1px solid var(--panel-border);
+          border: 1px solid rgba(139, 92, 246, 0.2);
           transition: all 0.2s ease;
         }
         
         .problem-link:hover {
-          background: var(--panel-hover);
+          background: rgba(139, 92, 246, 0.2);
           transform: translateY(-1px);
         }
         
-        .markdown-content {
-          color: var(--foreground);
+        .markdown-content :global(h2) {
+          color: var(--accent);
+          margin-top: 2.5rem;
+        }
+        
+        .markdown-content :global(ul) {
+          margin-left: 1rem;
+        }
+        
+        .markdown-content :global(li) {
+          margin-bottom: 0.75rem;
+        }
+        
+        .markdown-content :global(code:not(pre code)) {
+          color: #f472b6;
         }
       `}</style>
     </div>

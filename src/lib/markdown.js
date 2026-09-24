@@ -3,11 +3,10 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
-import { cache } from 'react';
 
 const patternsDirectory = path.join(process.cwd(), 'content/patterns');
 
-export const getSortedPatternsData = cache(() => {
+export function getSortedPatternsData() {
   // Get file names under /content/patterns
   const fileNames = fs.readdirSync(patternsDirectory);
   const allPatternsData = fileNames
@@ -40,9 +39,9 @@ export const getSortedPatternsData = cache(() => {
       return 0;
     }
   });
-});
+}
 
-export const getPatternData = cache(async (id) => {
+export async function getPatternData(id) {
   const fullPath = path.join(patternsDirectory, `${id}.md`);
   let fileContents;
   try {
@@ -68,4 +67,4 @@ export const getPatternData = cache(async (id) => {
     contentHtml,
     ...(matterResult.data)
   };
-});
+}

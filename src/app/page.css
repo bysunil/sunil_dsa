@@ -20,7 +20,9 @@
 .gradient-text {
   font-size: 3rem;
   margin-bottom: 0.5rem;
-  color: var(--foreground);
+  background: linear-gradient(135deg, #fff, #c4b5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
@@ -38,7 +40,7 @@
 
 .feature {
   padding: 1.5rem;
-  background: var(--panel-bg);
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   border: 1px solid var(--panel-border);
   transition: transform 0.2s ease;
@@ -46,14 +48,14 @@
 
 .feature:hover {
   transform: translateY(-5px);
-  background: var(--panel-hover);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .icon-wrapper {
   width: 48px;
   height: 48px;
   background: var(--accent-glow);
-  color: var(--accent);
+  color: #c4b5fd;
   border-radius: 12px;
   display: flex;
   align-items: center;
