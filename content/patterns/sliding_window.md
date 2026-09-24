@@ -1,12 +1,5 @@
 ---
 title: "Sliding Window"
-related_problems:
-  - name: "Maximum Average Subarray I"
-    url: "https://leetcode.com/problems/maximum-average-subarray-i/"
-  - name: "Longest Substring Without Repeating Characters"
-    url: "https://leetcode.com/problems/longest-substring-without-repeating-characters/"
-  - name: "Minimum Window Substring"
-    url: "https://leetcode.com/problems/minimum-window-substring/"
 ---
 
 ## When to use
@@ -48,6 +41,13 @@ def fixed_sliding_window(nums: list[int], k: int) -> int:
     return max_ans
 ```
 
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Maximum Average Subarray I](https://leetcode.com/problems/maximum-average-subarray-i/) | Maintain the sum of a window of size `k` and find the maximum average. |
+| [Find All Anagrams in a String](https://leetcode.com/problems/find-all-anagrams-in-a-string/) | Check if the frequency map of a fixed size window matches the target string's frequency map. |
+
 ### 2. Variable Size — Longest Valid Window
 
 ```python
@@ -68,6 +68,13 @@ def longest_valid_window(nums: list[int], k: int) -> int:
     return max_len
 ```
 
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/) | Expand the window until a duplicate character is found, then shrink from the left until the duplicate is removed. |
+| [Max Consecutive Ones III](https://leetcode.com/problems/max-consecutive-ones-iii/) | Keep expanding the window as long as the number of flipped 0s does not exceed `k`. |
+
 ### 3. Variable Size — Shortest / Minimum Valid Window
 
 ```python
@@ -86,6 +93,13 @@ def shortest_valid_window(nums: list[int], target: int) -> int:
 
     return min_len if min_len != float("inf") else 0
 ```
+
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Minimum Window Substring](https://leetcode.com/problems/minimum-window-substring/) | Expand until the window contains all characters of `t`, then shrink from the left to find the minimum length. |
+| [Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/) | Expand until the sum is `>= target`, then shrink to find the shortest subarray. |
 
 ### 4. Counting Subarrays: At Most `K`
 
@@ -107,6 +121,12 @@ def count_at_most_k(nums: list[int], k: int) -> int:
     return ans
 ```
 
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Subarray Product Less Than K](https://leetcode.com/problems/subarray-product-less-than-k/) | Count the number of valid subarrays ending at `right` by adding `right - left + 1` to the answer. |
+
 ### 5. "Exactly `K`" Technique
 
 ```python
@@ -127,6 +147,13 @@ def count_exactly_k(nums: list[int], k: int) -> int:
 
     return at_most(k) - at_most(k - 1)
 ```
+
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Subarrays with K Different Integers](https://leetcode.com/problems/subarrays-with-k-different-integers/) | Find the number of subarrays with exactly `k` distinct integers by calculating `atMost(k) - atMost(k - 1)`. |
+| [Count Number of Nice Subarrays](https://leetcode.com/problems/count-number-of-nice-subarrays/) | Count subarrays with exactly `k` odd numbers using the `atMost(k) - atMost(k - 1)` trick. |
 
 ### 6. Frequency Map / Character Replacement Window
 
@@ -151,3 +178,9 @@ def frequency_window(s: str, k: int) -> int:
 
     return ans
 ```
+
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/) | Keep track of the maximum frequency of a single character in the current window to determine how many replacements are needed. |

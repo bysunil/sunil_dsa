@@ -4,7 +4,7 @@ import TemplateViewer from '@/components/TemplateViewer';
 export async function generateStaticParams() {
   const patterns = getSortedPatternsData();
   return patterns.map((pattern) => ({
-    pattern: pattern.id,
+    pattern: pattern.id.split('/'), // Convert 'graphs/bfs' to ['graphs', 'bfs']
   }));
 }
 

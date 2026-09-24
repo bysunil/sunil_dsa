@@ -62,6 +62,13 @@ export default function Sidebar({ patterns }) {
     pattern.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const groupedPatterns = filteredPatterns.reduce((acc, pattern) => {
+    const chapter = pattern.chapter || 'General';
+    if (!acc[chapter]) acc[chapter] = [];
+    acc[chapter].push(pattern);
+    return acc;
+  }, {});
+
   return (
     <>
       {/* Mobile Top Bar */}
@@ -117,32 +124,37 @@ export default function Sidebar({ patterns }) {
         </div>
         
         <nav className="sidebar-nav">
-          <ul>
-            {filteredPatterns.map(pattern => {
-              const isActive = pathname === `/${pattern.id}`;
-              const isReviewed = progress[pattern.id] === 'reviewed';
-              const needsPractice = progress[pattern.id] === 'practice';
-              
-              return (
-                <li key={pattern.id}>
-                  <Link 
-                    href={`/${pattern.id}`} 
-                    className={`nav-link ${isActive ? 'active' : ''}`}
-                    onClick={() => setIsMobileOpen(false)}
-                  >
-                    <div className="nav-content">
-                      <span className="nav-text">{pattern.title}</span>
-                      {isReviewed && <span className="status-dot reviewed" title="Reviewed"></span>}
-                      {needsPractice && <span className="status-dot practice" title="Needs Practice"></span>}
-                    </div>
-                    <span className={`chevron-wrapper ${isActive ? 'active-chevron' : ''}`}>
-                      <ChevronRight size={16} />
-                    </span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+          {Object.entries(groupedPatterns).map(([chapter, chapterPatterns]) => (
+            <div key={chapter} className="chapter-group">
+              <h3 className="chapter-title">{chapter.charAt(0).toUpperCase() + chapter.slice(1)}</h3>
+              <ul>
+                {chapterPatterns.map(pattern => {
+                  const isActive = pathname === `/${pattern.id}`;
+                  const isReviewed = progress[pattern.id] === 'reviewed';
+                  const needsPractice = progress[pattern.id] === 'practice';
+                  
+                  return (
+                    <li key={pattern.id}>
+                      <Link 
+                        href={`/${pattern.id}`} 
+                        className={`nav-link ${isActive ? 'active' : ''}`}
+                        onClick={() => setIsMobileOpen(false)}
+                      >
+                        <div className="nav-content">
+                          <span className="nav-text">{pattern.title}</span>
+                          {isReviewed && <span className="status-dot reviewed" title="Reviewed"></span>}
+                          {needsPractice && <span className="status-dot practice" title="Needs Practice"></span>}
+                        </div>
+                        <span className={`chevron-wrapper ${isActive ? 'active-chevron' : ''}`}>
+                          <ChevronRight size={16} />
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
           {filteredPatterns.length === 0 && (
             <div className="no-results">
               <div className="empty-icon">🔍</div>

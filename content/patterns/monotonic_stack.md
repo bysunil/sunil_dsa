@@ -1,12 +1,5 @@
 ---
 title: "Monotonic Stack"
-related_problems:
-  - name: "Next Greater Element I"
-    url: "https://leetcode.com/problems/next-greater-element-i/"
-  - name: "Daily Temperatures"
-    url: "https://leetcode.com/problems/daily-temperatures/"
-  - name: "Largest Rectangle in Histogram"
-    url: "https://leetcode.com/problems/largest-rectangle-in-histogram/"
 ---
 
 ## When to use
@@ -46,6 +39,13 @@ def next_greater_element(nums: list[int]) -> list[int]:
     return result
 ```
 
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/) | Find the next greater element for elements in a subset of an array using a monotonic decreasing stack. |
+| [Daily Temperatures](https://leetcode.com/problems/daily-temperatures/) | Find the number of days to wait for a warmer temperature by finding the distance to the next greater element. |
+
 ### 2. Next Smaller Element (NSE)
 
 ```python
@@ -62,6 +62,12 @@ def next_smaller_element(nums: list[int]) -> list[int]:
 
     return result
 ```
+
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Final Prices With a Special Discount in a Shop](https://leetcode.com/problems/final-prices-with-a-special-discount-in-a-shop/) | Apply a discount equal to the next smaller or equal price by maintaining a monotonic increasing stack. |
 
 ### 3. Previous Smaller & Previous Greater Elements
 
@@ -92,6 +98,12 @@ def previous_smaller_and_greater(nums: list[int]):
     return prev_smaller, prev_greater
 ```
 
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Online Stock Span](https://leetcode.com/problems/online-stock-span/) | Count consecutive previous days with stock price less than or equal to today using a monotonic decreasing stack (Previous Greater Element). |
+
 ### 4. Circular Array Pattern
 
 ```python
@@ -110,6 +122,12 @@ def next_greater_circular(nums: list[int]) -> list[int]:
 
     return result
 ```
+
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Next Greater Element II](https://leetcode.com/problems/next-greater-element-ii/) | Find the next greater element in a circular array by conceptually doubling the array length. |
 
 ### 5. Contribution Technique / Histogram Pattern
 
@@ -131,3 +149,11 @@ def largest_rectangle_area(heights: list[int]) -> int:
     heights.pop()  # Restore list
     return max_area
 ```
+
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/) | Find the largest rectangular area by finding the previous and next smaller elements for each bar. |
+| [Maximal Rectangle](https://leetcode.com/problems/maximal-rectangle/) | Apply the histogram algorithm on each row of a 2D binary matrix. |
+| [Sum of Subarray Minimums](https://leetcode.com/problems/sum-of-subarray-minimums/) | Find the sum of minimums of all subarrays by finding the span where each element is the minimum (Contribution Technique). |

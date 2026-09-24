@@ -240,6 +240,57 @@ export default function TemplateViewer({ patternData }) {
         .markdown-content :global(code:not(pre code)) {
           color: #f472b6;
         }
+        
+        .markdown-content :global(table) {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 1.5rem 0;
+          background: rgba(0, 0, 0, 0.2);
+          border-radius: 8px;
+          overflow: hidden;
+          border: 1px solid var(--panel-border);
+        }
+        
+        .markdown-content :global(th) {
+          background: rgba(139, 92, 246, 0.1);
+          color: #c4b5fd;
+          font-weight: 600;
+          text-align: left;
+          padding: 1rem;
+          border-bottom: 1px solid var(--panel-border);
+        }
+        
+        .markdown-content :global(td) {
+          padding: 1rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+          color: #a1a1aa;
+        }
+        
+        .markdown-content :global(tr:last-child td) {
+          border-bottom: none;
+        }
+
+        .markdown-content :global(tr:hover td) {
+          background: rgba(255, 255, 255, 0.03);
+        }
+        
+        .markdown-content :global(td a) {
+          display: inline-flex;
+          align-items: center;
+          background: rgba(139, 92, 246, 0.1);
+          color: #c4b5fd;
+          padding: 0.3rem 0.6rem;
+          border-radius: 6px;
+          font-size: 0.9rem;
+          border: 1px solid rgba(139, 92, 246, 0.2);
+          text-decoration: none;
+          transition: all 0.2s ease;
+        }
+        
+        .markdown-content :global(td a:hover) {
+          background: rgba(139, 92, 246, 0.25);
+          transform: translateY(-1px);
+        }
       `}</style>
     </div>
   );

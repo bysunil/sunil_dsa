@@ -1,10 +1,5 @@
 ---
 title: "Disjoint Set Union (DSU / Union-Find)"
-related_problems:
-  - name: "Number of Provinces"
-    url: "https://leetcode.com/problems/number-of-provinces/"
-  - name: "Redundant Connection"
-    url: "https://leetcode.com/problems/redundant-connection/"
 ---
 
 ## When to use
@@ -58,3 +53,12 @@ class DSU:
             return True
         return False
 ```
+
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Number of Provinces](https://leetcode.com/problems/number-of-provinces/) | Find the number of connected components in an undirected graph. |
+| [Redundant Connection](https://leetcode.com/problems/redundant-connection/) | Detect a cycle in an undirected graph by checking if two nodes being connected are already in the same set. |
+| [Accounts Merge](https://leetcode.com/problems/accounts-merge/) | Group accounts that share common emails using DSU. |
+| [Most Stones Removed with Same Row or Column](https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/) | Group stones sharing a row or column, then the max removed is total stones - components. |
