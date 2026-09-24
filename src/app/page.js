@@ -1,69 +1,45 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from 'next/link';
+import { getSortedPatternsData } from '@/lib/markdown';
+import { BookOpen, Code, Trophy } from 'lucide-react';
+import './page.css';
 
 export default function Home() {
+  const patterns = getSortedPatternsData();
+  
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.js</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="welcome-container">
+      <div className="hero glass-panel">
+        <h1 className="gradient-text">Welcome to DSA Vault</h1>
+        <p className="subtitle">Your ultimate revision companion for coding interviews.</p>
+        
+        <div className="features">
+          <div className="feature">
+            <div className="icon-wrapper"><BookOpen size={24} /></div>
+            <h3>Structured Learning</h3>
+            <p>Templates organized by patterns to build intuition.</p>
+          </div>
+          <div className="feature">
+            <div className="icon-wrapper"><Code size={24} /></div>
+            <h3>Ready-to-use Code</h3>
+            <p>Python 3 templates with syntax highlighting and easy copy.</p>
+          </div>
+          <div className="feature">
+            <div className="icon-wrapper"><Trophy size={24} /></div>
+            <h3>Track Progress</h3>
+            <p>Mark patterns as reviewed or needing practice.</p>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        
+        <div className="cta-section">
+          <h2>Get Started</h2>
+          <p>Select a pattern from the sidebar, or jump straight in:</p>
+          {patterns.length > 0 && (
+            <Link href={`/${patterns[0].id}`} className="cta-btn">
+              Start with {patterns[0].title}
+            </Link>
+          )}
         </div>
-      </main>
+      </div>
     </div>
   );
 }
