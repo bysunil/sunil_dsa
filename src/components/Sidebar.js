@@ -73,12 +73,12 @@ export default function Sidebar({ patterns }) {
     <>
       {/* Mobile Top Bar */}
       <div className="mobile-topbar">
-        <div className="mobile-brand">
+        <Link href="/" className="mobile-brand" style={{ textDecoration: 'none', color: 'inherit' }}>
           <div className="brand-icon small">
             <Hash size={16} strokeWidth={2.5} />
           </div>
           <h2>DSA Vault</h2>
-        </div>
+        </Link>
         <button 
           className="menu-btn" 
           onClick={() => setIsMobileOpen(true)}
@@ -97,10 +97,12 @@ export default function Sidebar({ patterns }) {
       <aside className={`sidebar ${isMobileOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="brand">
-            <div className="brand-icon">
-              <Hash size={18} strokeWidth={2.5} />
-            </div>
-            <h2>DSA Vault</h2>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', textDecoration: 'none', color: 'inherit', flex: 1 }}>
+              <div className="brand-icon">
+                <Hash size={18} strokeWidth={2.5} />
+              </div>
+              <h2>DSA Vault</h2>
+            </Link>
             <button 
               className="close-btn mobile-only" 
               onClick={() => setIsMobileOpen(false)}

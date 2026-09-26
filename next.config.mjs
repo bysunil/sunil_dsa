@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
-  basePath: "/sunil_dsa",
+  basePath: "/dsa",
   images: {
     unoptimized: true,
   },

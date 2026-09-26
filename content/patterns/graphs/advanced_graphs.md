@@ -239,3 +239,64 @@ def tarjan_scc(
 | Problem | Core Idea |
 |---|---|
 | [Critical Connections in a Network](https://leetcode.com/problems/critical-connections-in-a-network/) | Find bridges in an undirected graph using Tarjan's discovery time and low-link values. |
+
+## 6. Tarjan's Algorithm (Articulation Points)
+
+Used to find articulation points (cut vertices) in an undirected graph. Removing an articulation point disconnects the graph.
+
+```python
+from collections import defaultdict
+
+def tarjan_articulation_points(
+    num_nodes: int,
+    edges: list[tuple[int, int]]
+) -> list[int]:
+    graph = defaultdict(list)
+    for u, v in edges:
+        graph[u].append(v)
+        graph[v].append(u)
+
+    discovery_time = [-1] * num_nodes
+    low = [-1] * num_nodes
+    timer = 0
+    articulation_points = set()
+
+    def dfs(u: int, p: int = -1) -> None:
+        nonlocal timer
+        discovery_time[u] = low[u] = timer
+        timer += 1
+        children = 0
+
+        for v in graph[u]:
+            if v == p:
+                continue
+            
+            if discovery_time[v] != -1:
+                # Back-edge
+                low[u] = min(low[u], discovery_time[v])
+            else:
+                # Tree edge
+                children += 1
+                dfs(v, u)
+                low[u] = min(low[u], low[v])
+                
+                # Condition for articulation point
+                if p != -1 and low[v] >= discovery_time[u]:
+                    articulation_points.add(u)
+
+        # Root condition
+        if p == -1 and children > 1:
+            articulation_points.add(u)
+
+    for i in range(num_nodes):
+        if discovery_time[i] == -1:
+            dfs(i)
+
+    return list(articulation_points)
+```
+
+#### Common Problems
+
+| Problem | Core Idea |
+|---|---|
+| [Articulation Point - I (GFG)](https://www.geeksforgeeks.org/problems/articulation-point-1/1) | Use Tarjan's algorithm to find cut vertices. |

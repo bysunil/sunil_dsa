@@ -30,6 +30,13 @@ export default function TemplateViewer({ patternData }) {
           root.render(<CopyButton text={block.innerText} />);
         }
       });
+
+      // Make all markdown links open in a new tab
+      const links = contentRef.current.querySelectorAll('a');
+      links.forEach((link) => {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      });
     }
   }, [patternData]);
 
